@@ -1,0 +1,218 @@
+{
+  "entities": {
+    "UserPrivate": {
+      "title": "UserPrivate",
+      "description": "Private user account and PII data strictly isolated to the account owner.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "format": "email", "maxLength": 254 },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "country": { "type": "string", "minLength": 2, "maxLength": 64 },
+        "themePreference": { "type": "string", "enum": ["dark", "light"] },
+        "soundEnabled": { "type": "boolean" },
+        "voiceCoachEnabled": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "displayName", "createdAt", "updatedAt"]
+    },
+    "PlayerProfile": {
+      "title": "PlayerProfile",
+      "description": "Public competitive player profile without PII.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "username": { "type": "string", "minLength": 2, "maxLength": 32 },
+        "avatarUrl": { "type": "string", "maxLength": 512 },
+        "country": { "type": "string", "minLength": 2, "maxLength": 64 },
+        "eloEnglish": { "type": "number" },
+        "eloInternational": { "type": "number" },
+        "eloCustom": { "type": "number" },
+        "peakElo": { "type": "number" },
+        "xp": { "type": "number" },
+        "level": { "type": "number" },
+        "totalGames": { "type": "number" },
+        "wins": { "type": "number" },
+        "draws": { "type": "number" },
+        "losses": { "type": "number" },
+        "favoriteVariant": { "type": "string", "enum": ["draft_master_8x8", "english_8x8", "international_10x10", "custom"] },
+        "badges": { "type": "array" },
+        "unlockedThemes": { "type": "array" },
+        "selectedBoardTheme": { "type": "string", "maxLength": 40 },
+        "selectedPieceTheme": { "type": "string", "maxLength": 40 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "username", "eloEnglish", "eloInternational", "eloCustom", "xp", "level", "totalGames", "wins", "draws", "losses", "createdAt", "updatedAt"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "Online real-time or turn-based draughts match with explicit rule configuration.",
+      "type": "object",
+      "properties": {
+        "matchId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "mode": { "type": "string", "enum": ["realtime", "turn_based", "league", "tournament"] },
+        "variantPreset": { "type": "string", "enum": ["draft_master_8x8", "english_8x8", "international_10x10", "custom"] },
+        "rulesConfig": { "type": "object" },
+        "whitePlayerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "whitePlayerName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "blackPlayerId": { "type": "string", "maxLength": 128 },
+        "blackPlayerName": { "type": "string", "maxLength": 40 },
+        "status": { "type": "string", "enum": ["waiting", "active", "completed", "aborted"] },
+        "turn": { "type": "string", "enum": ["white", "black"] },
+        "boardCompressed": { "type": "string", "minLength": 16, "maxLength": 256 },
+        "moveCount": { "type": "number" },
+        "winnerSide": { "type": "string", "enum": ["white", "black", "draw", "none"] },
+        "resultReason": { "type": "string", "maxLength": 64 },
+        "roomCode": { "type": "string", "maxLength": 16 },
+        "isPrivate": { "type": "boolean" },
+        "timeControlSeconds": { "type": "number" },
+        "drawOfferBy": { "type": "string", "enum": ["white", "black", "none"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["matchId", "mode", "variantPreset", "rulesConfig", "whitePlayerId", "whitePlayerName", "status", "turn", "boardCompressed", "moveCount", "winnerSide", "isPrivate", "createdAt", "updatedAt"]
+    },
+    "MatchMove": {
+      "title": "MatchMove",
+      "description": "Immutable move record inside a match subcollection.",
+      "type": "object",
+      "properties": {
+        "moveId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "matchId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "ply": { "type": "number" },
+        "playerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "whitePlayerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "blackPlayerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "notation": { "type": "string", "minLength": 3, "maxLength": 64 },
+        "boardCompressed": { "type": "string", "minLength": 16, "maxLength": 256 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["moveId", "matchId", "ply", "playerId", "whitePlayerId", "blackPlayerId", "notation", "boardCompressed", "createdAt"]
+    },
+    "League": {
+      "title": "League",
+      "description": "Competitive draughts league with configurable rules and scoring.",
+      "type": "object",
+      "properties": {
+        "leagueId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 3, "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 500 },
+        "visibility": { "type": "string", "enum": ["public", "private"] },
+        "inviteCode": { "type": "string", "maxLength": 16 },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "ownerName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "variantPreset": { "type": "string", "enum": ["draft_master_8x8", "english_8x8", "international_10x10", "custom"] },
+        "rulesConfig": { "type": "object" },
+        "format": { "type": "string", "enum": ["round_robin", "knockout"] },
+        "maxMembers": { "type": "number" },
+        "memberCount": { "type": "number" },
+        "winPoints": { "type": "number" },
+        "drawPoints": { "type": "number" },
+        "lossPoints": { "type": "number" },
+        "status": { "type": "string", "enum": ["open", "active", "completed"] },
+        "seasonNumber": { "type": "number" },
+        "announcement": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["leagueId", "name", "visibility", "ownerId", "ownerName", "variantPreset", "rulesConfig", "format", "maxMembers", "memberCount", "winPoints", "drawPoints", "lossPoints", "status", "seasonNumber", "createdAt", "updatedAt"]
+    },
+    "LeagueMember": {
+      "title": "LeagueMember",
+      "description": "Membership and standings entry in a league.",
+      "type": "object",
+      "properties": {
+        "memberId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "leagueId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "username": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "role": { "type": "string", "enum": ["owner", "admin", "member"] },
+        "status": { "type": "string", "enum": ["pending", "approved", "removed"] },
+        "played": { "type": "number" },
+        "wins": { "type": "number" },
+        "draws": { "type": "number" },
+        "losses": { "type": "number" },
+        "points": { "type": "number" },
+        "joinedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["memberId", "leagueId", "userId", "username", "role", "status", "played", "wins", "draws", "losses", "points", "joinedAt", "updatedAt"]
+    },
+    "Tournament": {
+      "title": "Tournament",
+      "description": "Competitive draughts tournament with bracket state and ruleset.",
+      "type": "object",
+      "properties": {
+        "tournamentId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 3, "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 500 },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "ownerName": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "variantPreset": { "type": "string", "enum": ["draft_master_8x8", "english_8x8", "international_10x10", "custom"] },
+        "rulesConfig": { "type": "object" },
+        "format": { "type": "string", "enum": ["single_elimination", "round_robin"] },
+        "maxParticipants": { "type": "number" },
+        "participantCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["registration", "in_progress", "completed"] },
+        "championId": { "type": "string", "maxLength": 128 },
+        "championName": { "type": "string", "maxLength": 40 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["tournamentId", "name", "ownerId", "ownerName", "variantPreset", "rulesConfig", "format", "maxParticipants", "participantCount", "status", "createdAt", "updatedAt"]
+    },
+    "TournamentEntry": {
+      "title": "TournamentEntry",
+      "description": "Participant registration in a tournament.",
+      "type": "object",
+      "properties": {
+        "entryId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "tournamentId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "username": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "seed": { "type": "number" },
+        "elo": { "type": "number" },
+        "eliminated": { "type": "boolean" },
+        "joinedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["entryId", "tournamentId", "userId", "username", "seed", "elo", "eliminated", "joinedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserPrivate" },
+      "description": "Private user account metadata and preferences."
+    },
+    "/player_profiles/{userId}": {
+      "schema": { "$ref": "#/entities/PlayerProfile" },
+      "description": "Public competitive profile, ratings, XP, and cosmetic unlocks."
+    },
+    "/matches/{matchId}": {
+      "schema": { "$ref": "#/entities/Match" },
+      "description": "Online real-time and turn-based matches."
+    },
+    "/matches/{matchId}/moves/{moveId}": {
+      "schema": { "$ref": "#/entities/MatchMove" },
+      "description": "Immutable chronological move records for a match."
+    },
+    "/leagues/{leagueId}": {
+      "schema": { "$ref": "#/entities/League" },
+      "description": "Competitive leagues and their configurations."
+    },
+    "/leagues/{leagueId}/members/{memberId}": {
+      "schema": { "$ref": "#/entities/LeagueMember" },
+      "description": "League membership and standings records."
+    },
+    "/tournaments/{tournamentId}": {
+      "schema": { "$ref": "#/entities/Tournament" },
+      "description": "Competitive tournaments and bracket summaries."
+    },
+    "/tournaments/{tournamentId}/entries/{entryId}": {
+      "schema": { "$ref": "#/entities/TournamentEntry" },
+      "description": "Registered participants for a tournament."
+    }
+  }
+}
