@@ -85,7 +85,8 @@ class ReplayController extends ChangeNotifier {
   void seekTo(int ply) {
     final clamped = ply.clamp(0, totalPlies);
     _plyIndex = clamped;
-    _currentState = DraughtsEngine.reconstructAtPly(session.finalState, clamped);
+    _currentState =
+        DraughtsEngine.reconstructAtPly(session.finalState, clamped);
     if (clamped > 0 && clamped <= session.finalState.history.length) {
       final move = session.finalState.history[clamped - 1].move;
       if (move.promoted) {

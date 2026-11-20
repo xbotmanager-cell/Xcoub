@@ -51,9 +51,8 @@ class GameState {
     final rules = RuleConfig.fromJson(
       json['rules'] as Map<String, dynamic>? ?? const {},
     );
-    final initialBoardCompressed =
-        json['initialBoardCompressed'] as String? ??
-            BoardState.initial(rules).compress();
+    final initialBoardCompressed = json['initialBoardCompressed'] as String? ??
+        BoardState.initial(rules).compress();
     final initialTurn =
         PlayerSide.fromCode(json['initialTurn'] as String? ?? 'black');
     final historyRaw = json['history'] as List<dynamic>? ?? const [];

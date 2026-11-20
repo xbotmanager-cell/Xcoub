@@ -158,11 +158,13 @@ class RuleConfig {
       };
 
   factory RuleConfig.fromJson(Map<String, dynamic> json) => RuleConfig(
-        preset: VariantPreset.fromId(json['preset'] as String? ?? 'draft_master_8x8'),
+        preset: VariantPreset.fromId(
+            json['preset'] as String? ?? 'draft_master_8x8'),
         name: json['name'] as String? ?? 'Draft Master 8×8 (Flying Kings)',
         boardSize: json['boardSize'] as int? ?? 8,
         startingRows: json['startingRows'] as int? ?? 3,
-        firstPlayer: PlayerSide.fromCode(json['firstPlayer'] as String? ?? 'black'),
+        firstPlayer:
+            PlayerSide.fromCode(json['firstPlayer'] as String? ?? 'black'),
         menCaptureBackward: json['menCaptureBackward'] as bool? ?? false,
         flyingKings: json['flyingKings'] as bool? ?? true,
         mandatoryCapture: json['mandatoryCapture'] as bool? ?? true,

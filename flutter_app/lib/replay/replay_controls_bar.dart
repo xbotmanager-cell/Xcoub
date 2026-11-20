@@ -73,7 +73,8 @@ class ReplayControlsBar extends StatelessWidget {
                         icon: const Icon(Icons.chevron_left_rounded),
                       ),
                       FilledButton.icon(
-                        onPressed: total > 0 ? controller.togglePlayPause : null,
+                        onPressed:
+                            total > 0 ? controller.togglePlayPause : null,
                         icon: Icon(
                           controller.isPlaying
                               ? Icons.pause_rounded
@@ -110,8 +111,7 @@ class ReplayControlsBar extends StatelessWidget {
                       ButtonSegment(value: 4.0, label: Text('4×')),
                     ],
                     selected: {controller.speed},
-                    onSelectionChanged: (set) =>
-                        controller.setSpeed(set.first),
+                    onSelectionChanged: (set) => controller.setSpeed(set.first),
                   ),
                 ],
               ),

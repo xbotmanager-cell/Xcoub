@@ -30,7 +30,8 @@ class _VideoShareSheetState extends State<VideoShareSheet> {
     setState(() {
       _busy = true;
       _statusMessage = null;
-      _progress = const VideoExportProgress(stage: 'Initializing...', progress: 0.05);
+      _progress =
+          const VideoExportProgress(stage: 'Initializing...', progress: 0.05);
     });
     try {
       final path = await VideoExportService.exportMatchMp4(
@@ -133,7 +134,8 @@ class _VideoShareSheetState extends State<VideoShareSheet> {
                   color: const Color(0xFFF59E0B).withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(_statusMessage!, style: const TextStyle(fontSize: 12)),
+                child:
+                    Text(_statusMessage!, style: const TextStyle(fontSize: 12)),
               ),
               const SizedBox(height: 12),
             ],

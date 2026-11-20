@@ -122,10 +122,12 @@ class _LoadingScreenState extends State<LoadingScreen>
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF43F5E).withValues(alpha: 0.14),
+                            color:
+                                const Color(0xFFF43F5E).withValues(alpha: 0.14),
                             borderRadius: BorderRadius.circular(14),
                             border: Border.all(
-                              color: const Color(0xFFF43F5E).withValues(alpha: 0.5),
+                              color: const Color(0xFFF43F5E)
+                                  .withValues(alpha: 0.5),
                             ),
                           ),
                           child: Column(
@@ -211,7 +213,8 @@ class _BackdropBoardGridPainter extends CustomPainter {
     for (int r = 0; r < rows; r++) {
       for (int c = 0; c < cols; c++) {
         if ((r + c) % 2 == 1) {
-          canvas.drawRect(Rect.fromLTWH(c * cell, r * cell, cell, cell), tilePaint);
+          canvas.drawRect(
+              Rect.fromLTWH(c * cell, r * cell, cell, cell), tilePaint);
         }
       }
     }

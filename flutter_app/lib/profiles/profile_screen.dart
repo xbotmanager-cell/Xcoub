@@ -93,8 +93,10 @@ class ProfileScreen extends StatelessWidget {
                         Icons.history_rounded,
                         color: Color(0xFFF59E0B),
                       ),
-                      title: Text(s.title, style: const TextStyle(fontSize: 13)),
-                      subtitle: Text('${s.totalPlies} moves · ${s.winnerLabel}'),
+                      title:
+                          Text(s.title, style: const TextStyle(fontSize: 13)),
+                      subtitle:
+                          Text('${s.totalPlies} moves · ${s.winnerLabel}'),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(

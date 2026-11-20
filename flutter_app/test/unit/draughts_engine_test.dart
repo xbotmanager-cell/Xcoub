@@ -13,7 +13,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Draft Master Multi-Variant Engine & Flying Kings (Dart)', () {
-    test('default ruleset is 8x8 with 12 pieces each, Black first, and Flying Kings enabled', () {
+    test(
+        'default ruleset is 8x8 with 12 pieces each, Black first, and Flying Kings enabled',
+        () {
       final state = DraughtsEngine.createInitialState();
       final counts = state.board.countPieces();
 
@@ -25,7 +27,9 @@ void main() {
       expect(counts.whiteTotal, 12);
     });
 
-    test('8x8 Flying King slides long distance diagonally and stops cleanly before friendly piece', () {
+    test(
+        '8x8 Flying King slides long distance diagonally and stops cleanly before friendly piece',
+        () {
       final board = BoardState.empty(8);
       board.grid[4][3] =
           const DraughtsPiece(side: PlayerSide.white, type: PieceType.king);
@@ -51,7 +55,9 @@ void main() {
       expect(kingMoves.any((m) => m.to == const BoardCoord(1, 0)), isFalse);
     });
 
-    test('8x8 Flying King executes long-range captures and offers all empty landing squares beyond victim', () {
+    test(
+        '8x8 Flying King executes long-range captures and offers all empty landing squares beyond victim',
+        () {
       final board = BoardState.empty(8);
       board.grid[6][1] =
           const DraughtsPiece(side: PlayerSide.white, type: PieceType.king);
@@ -72,7 +78,8 @@ void main() {
       expect(moves.any((m) => m.to == const BoardCoord(0, 7)), isTrue);
     });
 
-    test('8x8 Flying King executes multi-capture chain across long diagonals', () {
+    test('8x8 Flying King executes multi-capture chain across long diagonals',
+        () {
       final board = BoardState.empty(8);
       board.grid[7][0] =
           const DraughtsPiece(side: PlayerSide.white, type: PieceType.king);
@@ -114,7 +121,9 @@ void main() {
       expect(moves.any((m) => m.to == const BoardCoord(3, 2)), isTrue);
     });
 
-    test('International 10x10 enforces maximum capture rule & starts with 20 pieces each', () {
+    test(
+        'International 10x10 enforces maximum capture rule & starts with 20 pieces each',
+        () {
       final initial =
           DraughtsEngine.createInitialState(RuleConfig.international10x10);
       expect(initial.board.size, 10);
@@ -142,7 +151,9 @@ void main() {
       expect(moves.every((m) => m.captured.length == 2), isTrue);
     });
 
-    test('reconstructAtPly accurately rebuilds match replay frames and revertLastMove restores custom boards', () {
+    test(
+        'reconstructAtPly accurately rebuilds match replay frames and revertLastMove restores custom boards',
+        () {
       var state = DraughtsEngine.createInitialState(RuleConfig.draftMaster8x8);
       for (int i = 0; i < 4; i++) {
         final legal = DraughtsEngine.generateLegalMoves(state);
@@ -161,10 +172,14 @@ void main() {
       expect(reverted.moveCount, 3);
     });
 
-    test('AI engine selects legal moves across difficulty tiers on 8x8 Flying Kings', () async {
-      final state = DraughtsEngine.createInitialState(RuleConfig.draftMaster8x8);
-      final legalNotations =
-          DraughtsEngine.generateLegalMoves(state).map((m) => m.notation).toSet();
+    test(
+        'AI engine selects legal moves across difficulty tiers on 8x8 Flying Kings',
+        () async {
+      final state =
+          DraughtsEngine.createInitialState(RuleConfig.draftMaster8x8);
+      final legalNotations = DraughtsEngine.generateLegalMoves(state)
+          .map((m) => m.notation)
+          .toSet();
 
       for (final tier in [
         AiDifficulty.beginner,
@@ -177,7 +192,9 @@ void main() {
       }
     });
 
-    test('AppSettings serializes and restores all Gameplay, Display, Audio, Accessibility, and Privacy fields', () {
+    test(
+        'AppSettings serializes and restores all Gameplay, Display, Audio, Accessibility, and Privacy fields',
+        () {
       final customRules = RuleConfig.draftMaster8x8.copyWith(
         preset: VariantPreset.custom,
         name: 'Custom (8×8)',

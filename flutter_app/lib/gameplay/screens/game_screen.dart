@@ -121,8 +121,9 @@ class _GameScreenState extends State<GameScreen> {
     _handleCompletion(ended);
   }
 
-  String get _humanName =>
-      widget.settings.playerName.trim().isNotEmpty ? widget.settings.playerName : 'You';
+  String get _humanName => widget.settings.playerName.trim().isNotEmpty
+      ? widget.settings.playerName
+      : 'You';
 
   String get _whiteName => widget.vsAi
       ? (widget.playerSide == PlayerSide.white
@@ -233,7 +234,9 @@ class _GameScreenState extends State<GameScreen> {
     if (_aiThinking || _state.history.isEmpty) return;
     SoundHapticService.onButtonTap();
     var next = DraughtsEngine.revertLastMove(_state);
-    if (widget.vsAi && next.turn != widget.playerSide && next.history.isNotEmpty) {
+    if (widget.vsAi &&
+        next.turn != widget.playerSide &&
+        next.history.isNotEmpty) {
       next = DraughtsEngine.revertLastMove(next);
     }
     setState(() {
@@ -309,9 +312,10 @@ class _GameScreenState extends State<GameScreen> {
                     isWhite: flip,
                     men: flip ? counts.whiteMen : counts.blackMen,
                     kings: flip ? counts.whiteKings : counts.blackKings,
-                    clockText: _formatClock(flip ? _whiteSecondsLeft : _blackSecondsLeft),
-                    activeTurn:
-                        _state.turn == (flip ? PlayerSide.white : PlayerSide.black),
+                    clockText: _formatClock(
+                        flip ? _whiteSecondsLeft : _blackSecondsLeft),
+                    activeTurn: _state.turn ==
+                        (flip ? PlayerSide.white : PlayerSide.black),
                     thinking: _aiThinking && _state.turn != widget.playerSide,
                   ),
                   const SizedBox(height: 6),
@@ -337,7 +341,8 @@ class _GameScreenState extends State<GameScreen> {
                                   flipped: flip,
                                   paletteId: widget.settings.boardPaletteId,
                                   pieceThemeId: widget.settings.pieceThemeId,
-                                  highContrast: widget.settings.highContrastBoard,
+                                  highContrast:
+                                      widget.settings.highContrastBoard,
                                   showSquareNumbers:
                                       widget.settings.showMoveLabels,
                                   highlightLegalMoves:
@@ -345,10 +350,11 @@ class _GameScreenState extends State<GameScreen> {
                                   highlightLastMove:
                                       widget.settings.highlightLastMove,
                                   animateMoves: widget.settings.boardAnimations,
-                                  glideDurationMs:
-                                      widget.settings.animationIntensity.glideMs,
+                                  glideDurationMs: widget
+                                      .settings.animationIntensity.glideMs,
                                   reducedMotion: widget.settings.reducedMotion,
-                                  confirmMoves: widget.settings.moveConfirmation,
+                                  confirmMoves:
+                                      widget.settings.moveConfirmation,
                                   highlightSquares: _hintSquares,
                                   pendingConfirmMove: _pendingMove,
                                   onPendingMoveSelected: (m) =>
@@ -359,7 +365,8 @@ class _GameScreenState extends State<GameScreen> {
                                   Container(
                                     padding: const EdgeInsets.all(24),
                                     decoration: BoxDecoration(
-                                      color: Colors.black.withValues(alpha: 0.80),
+                                      color:
+                                          Colors.black.withValues(alpha: 0.80),
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                     child: Column(
@@ -407,7 +414,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                           const SizedBox(width: 8),
                           OutlinedButton(
-                            onPressed: () => setState(() => _pendingMove = null),
+                            onPressed: () =>
+                                setState(() => _pendingMove = null),
                             child: const Text('Cancel'),
                           ),
                         ],
@@ -418,9 +426,10 @@ class _GameScreenState extends State<GameScreen> {
                     isWhite: !flip,
                     men: flip ? counts.blackMen : counts.whiteMen,
                     kings: flip ? counts.blackKings : counts.whiteKings,
-                    clockText: _formatClock(flip ? _blackSecondsLeft : _whiteSecondsLeft),
-                    activeTurn:
-                        _state.turn == (flip ? PlayerSide.black : PlayerSide.white),
+                    clockText: _formatClock(
+                        flip ? _blackSecondsLeft : _whiteSecondsLeft),
+                    activeTurn: _state.turn ==
+                        (flip ? PlayerSide.black : PlayerSide.white),
                     thinking: false,
                   ),
                   const SizedBox(height: 4),
@@ -491,7 +500,8 @@ class _PlayerHudStrip extends StatelessWidget {
             height: 15,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isWhite ? const Color(0xFFF5EFE6) : const Color(0xFF1F2430),
+              color:
+                  isWhite ? const Color(0xFFF5EFE6) : const Color(0xFF1F2430),
               border: Border.all(color: Colors.grey.shade500),
             ),
           ),

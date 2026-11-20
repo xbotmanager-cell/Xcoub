@@ -32,7 +32,8 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
           await http.get(Uri.parse('${widget.serverBaseUrl}/api/leagues'));
       if (resp.statusCode == 200) {
         final data = jsonDecode(resp.body) as Map<String, dynamic>;
-        setState(() => _leagues = data['leagues'] as List<dynamic>? ?? const []);
+        setState(
+            () => _leagues = data['leagues'] as List<dynamic>? ?? const []);
       }
     } catch (_) {
       // Offline fallback keeps empty state clean
@@ -49,11 +50,13 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.emoji_events_outlined, size: 42, color: Colors.amber),
+            const Icon(Icons.emoji_events_outlined,
+                size: 42, color: Colors.amber),
             const SizedBox(height: 10),
             const Text('No leagues fetched yet.'),
             const SizedBox(height: 8),
-            OutlinedButton(onPressed: _loadLeagues, child: const Text('Refresh')),
+            OutlinedButton(
+                onPressed: _loadLeagues, child: const Text('Refresh')),
           ],
         ),
       );

@@ -40,8 +40,10 @@ class _DraftMasterEmblemPainter extends CustomPainter {
         ..strokeWidth = size.width * 0.065
         ..strokeCap = StrokeCap.square;
       final dOut = size.width * 0.43;
-      canvas.drawLine(c + Offset(-dOut, -dOut), c + Offset(dOut, dOut), rayPaint);
-      canvas.drawLine(c + Offset(dOut, -dOut), c + Offset(-dOut, dOut), rayPaint);
+      canvas.drawLine(
+          c + Offset(-dOut, -dOut), c + Offset(dOut, dOut), rayPaint);
+      canvas.drawLine(
+          c + Offset(dOut, -dOut), c + Offset(-dOut, dOut), rayPaint);
     }
 
     // Outer bronze-gold disc rim

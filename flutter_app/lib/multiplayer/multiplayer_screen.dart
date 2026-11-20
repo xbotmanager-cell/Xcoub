@@ -114,14 +114,16 @@ class _MultiplayerScreenState extends State<MultiplayerScreen> {
         ),
         if (_status != null) ...[
           const SizedBox(height: 10),
-          Text(_status!, style: const TextStyle(fontSize: 12, color: Colors.amber)),
+          Text(_status!,
+              style: const TextStyle(fontSize: 12, color: Colors.amber)),
         ],
         const SizedBox(height: 14),
         if (_rooms.isEmpty)
           const Padding(
             padding: EdgeInsets.all(24),
             child: Center(
-              child: Text('No active online rooms.', style: TextStyle(color: Colors.grey)),
+              child: Text('No active online rooms.',
+                  style: TextStyle(color: Colors.grey)),
             ),
           )
         else

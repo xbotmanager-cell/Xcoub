@@ -155,7 +155,8 @@ class _DraughtsBoardWidgetState extends State<DraughtsBoardWidget> {
         return true;
       }).toList(growable: false);
 
-      if (matching.length == 1 && matching.first.path.length == nextPath.length) {
+      if (matching.length == 1 &&
+          matching.first.path.length == nextPath.length) {
         _commitOrStageMove(matching.first);
         return;
       }
@@ -218,9 +219,8 @@ class _DraughtsBoardWidgetState extends State<DraughtsBoardWidget> {
     );
     final nextTargets = _nextStepTargets;
     final directFinals = _directFinalMoves;
-    final lastMove = widget.state.history.isNotEmpty
-        ? widget.state.history.last.move
-        : null;
+    final lastMove =
+        widget.state.history.isNotEmpty ? widget.state.history.last.move : null;
     final shouldAnimate = widget.animateMoves && !widget.reducedMotion;
     final glideDuration = Duration(
       milliseconds: shouldAnimate ? widget.glideDurationMs : 0,
@@ -256,8 +256,9 @@ class _DraughtsBoardWidgetState extends State<DraughtsBoardWidget> {
                   final dispC = widget.flipped ? size - 1 - c : c;
                   final coord = BoardCoord(r, c);
                   final isSel = _selected == coord;
-                  final isPromotedNow =
-                      lastMove != null && lastMove.to == coord && lastMove.promoted;
+                  final isPromotedNow = lastMove != null &&
+                      lastMove.to == coord &&
+                      lastMove.promoted;
 
                   final isMovedTarget =
                       lastMove != null && lastMove.to == coord;
@@ -281,7 +282,8 @@ class _DraughtsBoardWidgetState extends State<DraughtsBoardWidget> {
                       child: IgnorePointer(
                         child: isMovedTarget && shouldAnimate
                             ? TweenAnimationBuilder<Offset>(
-                                key: ValueKey('glide_${widget.state.moveCount}'),
+                                key:
+                                    ValueKey('glide_${widget.state.moveCount}'),
                                 tween: Tween<Offset>(
                                   begin: Offset(
                                     (fromDispC - dispC) * cellPx,
@@ -328,7 +330,8 @@ class _DraughtsBoardWidgetState extends State<DraughtsBoardWidget> {
                       flipped: widget.flipped,
                       palette: palette,
                       selected: _selected,
-                      lastFrom: widget.highlightLastMove ? lastMove?.from : null,
+                      lastFrom:
+                          widget.highlightLastMove ? lastMove?.from : null,
                       lastTo: widget.highlightLastMove ? lastMove?.to : null,
                       pendingTo: widget.pendingConfirmMove?.to,
                       highlightSquares: widget.highlightSquares,

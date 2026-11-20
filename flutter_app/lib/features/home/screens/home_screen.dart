@@ -147,7 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 16),
                     const Text(
                       'AI Skill Tier (1–8)',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
@@ -199,7 +200,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           vsAi: true,
                         ),
                         icon: const Icon(Icons.play_arrow_rounded),
-                        label: Text('Play ${s.rules.boardSize}×${s.rules.boardSize} vs AI'),
+                        label: Text(
+                            'Play ${s.rules.boardSize}×${s.rules.boardSize} vs AI'),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -211,7 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               rules: s.rules,
                               vsAi: false,
                             ),
-                            icon: const Icon(Icons.people_alt_rounded, size: 18),
+                            icon:
+                                const Icon(Icons.people_alt_rounded, size: 18),
                             label: const Text('Pass & Play 2P'),
                           ),
                         ),

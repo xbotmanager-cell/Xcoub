@@ -103,13 +103,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     runSpacing: 8,
                     children: [
                       ChoiceChip(
-                        selected:
-                            rules.preset == VariantPreset.draftMaster8x8,
+                        selected: rules.preset == VariantPreset.draftMaster8x8,
                         label: const Text('8×8 Flying Kings (Default)'),
                         onSelected: (_) {
                           SoundHapticService.onButtonTap();
-                          _update(
-                              s.copyWith(rules: RuleConfig.draftMaster8x8));
+                          _update(s.copyWith(rules: RuleConfig.draftMaster8x8));
                         },
                       ),
                       ChoiceChip(
@@ -126,8 +124,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         label: const Text('International 10×10'),
                         onSelected: (_) {
                           SoundHapticService.onButtonTap();
-                          _update(s.copyWith(
-                              rules: RuleConfig.international10x10));
+                          _update(
+                              s.copyWith(rules: RuleConfig.international10x10));
                         },
                       ),
                     ],
@@ -205,12 +203,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       'Require a confirmation tap before executing moves.',
                     ),
                     value: s.moveConfirmation,
-                    onChanged: (v) =>
-                        _update(s.copyWith(moveConfirmation: v)),
+                    onChanged: (v) => _update(s.copyWith(moveConfirmation: v)),
                   ),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<AiDifficulty>(
-                    initialValue: s.defaultDifficulty,
+                    value: s.defaultDifficulty,
                     decoration: const InputDecoration(
                       labelText: 'Default AI Difficulty',
                       border: OutlineInputBorder(),
@@ -220,7 +217,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         .map(
                           (d) => DropdownMenuItem(
                             value: d,
-                            child: Text('${d.level}. ${d.label} (${d.eloEstimate} Elo)'),
+                            child: Text(
+                                '${d.level}. ${d.label} (${d.eloEstimate} Elo)'),
                           ),
                         )
                         .toList(),
@@ -230,7 +228,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<int>(
-                    initialValue: s.matchTimerMinutes,
+                    value: s.matchTimerMinutes,
                     decoration: const InputDecoration(
                       labelText: 'Match Timer',
                       border: OutlineInputBorder(),
@@ -238,10 +236,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     items: const [
                       DropdownMenuItem(value: 0, child: Text('No Time Limit')),
-                      DropdownMenuItem(value: 3, child: Text('3 Minutes (Blitz)')),
-                      DropdownMenuItem(value: 5, child: Text('5 Minutes (Rapid)')),
-                      DropdownMenuItem(value: 10, child: Text('10 Minutes (Classic)')),
-                      DropdownMenuItem(value: 15, child: Text('15 Minutes (Tournament)')),
+                      DropdownMenuItem(
+                          value: 3, child: Text('3 Minutes (Blitz)')),
+                      DropdownMenuItem(
+                          value: 5, child: Text('5 Minutes (Rapid)')),
+                      DropdownMenuItem(
+                          value: 10, child: Text('10 Minutes (Classic)')),
+                      DropdownMenuItem(
+                          value: 15, child: Text('15 Minutes (Tournament)')),
                     ],
                     onChanged: (m) {
                       if (m != null) _update(s.copyWith(matchTimerMinutes: m));
@@ -260,7 +262,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 8),
                   SegmentedButton<AppThemePreference>(
                     segments: AppThemePreference.values
-                        .map((t) => ButtonSegment(value: t, label: Text(t.label)))
+                        .map((t) =>
+                            ButtonSegment(value: t, label: Text(t.label)))
                         .toList(),
                     selected: {s.themePreference},
                     onSelectionChanged: (set) {
@@ -336,7 +339,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SizedBox(height: 6),
                     SegmentedButton<AnimationIntensity>(
                       segments: AnimationIntensity.values
-                          .map((a) => ButtonSegment(value: a, label: Text(a.label)))
+                          .map((a) =>
+                              ButtonSegment(value: a, label: Text(a.label)))
                           .toList(),
                       selected: {s.animationIntensity},
                       onSelectionChanged: (set) =>
@@ -447,8 +451,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     contentPadding: EdgeInsets.zero,
                     title: const Text('Tournament Notifications'),
                     value: s.notifyTournaments,
-                    onChanged: (v) =>
-                        _update(s.copyWith(notifyTournaments: v)),
+                    onChanged: (v) => _update(s.copyWith(notifyTournaments: v)),
                   ),
                   SwitchListTile(
                     contentPadding: EdgeInsets.zero,
@@ -493,8 +496,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     contentPadding: EdgeInsets.zero,
                     title: const Text('High-Contrast Board & Pieces'),
                     value: s.highContrastBoard,
-                    onChanged: (v) =>
-                        _update(s.copyWith(highContrastBoard: v)),
+                    onChanged: (v) => _update(s.copyWith(highContrastBoard: v)),
                   ),
                   SwitchListTile(
                     contentPadding: EdgeInsets.zero,
@@ -567,8 +569,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     contentPadding: EdgeInsets.zero,
                     title: const Text('Allow Match Video Sharing'),
                     value: s.allowVideoSharing,
-                    onChanged: (v) =>
-                        _update(s.copyWith(allowVideoSharing: v)),
+                    onChanged: (v) => _update(s.copyWith(allowVideoSharing: v)),
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -580,7 +581,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             widget.onSignOut?.call();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text('Signed out and reset active handle.'),
+                                content:
+                                    Text('Signed out and reset active handle.'),
                               ),
                             );
                           },
@@ -604,11 +606,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 ),
                                 actions: [
                                   TextButton(
-                                    onPressed: () => Navigator.of(ctx).pop(false),
+                                    onPressed: () =>
+                                        Navigator.of(ctx).pop(false),
                                     child: const Text('Cancel'),
                                   ),
                                   FilledButton(
-                                    onPressed: () => Navigator.of(ctx).pop(true),
+                                    onPressed: () =>
+                                        Navigator.of(ctx).pop(true),
                                     child: const Text('Confirm Request'),
                                   ),
                                 ],
@@ -618,7 +622,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               widget.onRequestAccountDeletion?.call();
                             }
                           },
-                          icon: const Icon(Icons.delete_outline_rounded, size: 18),
+                          icon: const Icon(Icons.delete_outline_rounded,
+                              size: 18),
                           label: Text(
                             s.deletionRequested
                                 ? 'Deletion Requested'
@@ -680,7 +685,8 @@ class _SectionCard extends StatelessWidget {
               ),
               if (badge != null)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: (badgeColor ?? Colors.amber).withValues(alpha: 0.16),
                     borderRadius: BorderRadius.circular(999),

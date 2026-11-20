@@ -32,8 +32,8 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
           await http.get(Uri.parse('${widget.serverBaseUrl}/api/tournaments'));
       if (resp.statusCode == 200) {
         final data = jsonDecode(resp.body) as Map<String, dynamic>;
-        setState(
-            () => _tournaments = data['tournaments'] as List<dynamic>? ?? const []);
+        setState(() =>
+            _tournaments = data['tournaments'] as List<dynamic>? ?? const []);
       }
     } catch (_) {
       // Offline graceful state
@@ -50,7 +50,8 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.account_tree_rounded, size: 42, color: Colors.amber),
+            const Icon(Icons.account_tree_rounded,
+                size: 42, color: Colors.amber),
             const SizedBox(height: 10),
             const Text('No active bracket tournaments.'),
             const SizedBox(height: 8),

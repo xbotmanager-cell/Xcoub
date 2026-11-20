@@ -95,15 +95,15 @@ class CaptureGenerator {
           final nextCaptured = [...captured, step.capturedSquare];
           final nextKeys = {...capturedKeys, capKey};
 
-          final reachesBackRank =
-              !isKing &&
+          final reachesBackRank = !isKing &&
               GameRules.isPromotionRow(
                 step.landingSquare.row,
                 piece.side,
                 working.size,
               );
 
-          if (reachesBackRank && rules.promotionMode == PromotionMode.immediateStop) {
+          if (reachesBackRank &&
+              rules.promotionMode == PromotionMode.immediateStop) {
             results.add(
               CaptureSequence(
                 path: nextPath,

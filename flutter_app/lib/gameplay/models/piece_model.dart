@@ -35,11 +35,13 @@ class DraughtsPiece {
       case 'w':
         return const DraughtsPiece(side: PlayerSide.white, type: PieceType.man);
       case 'W':
-        return const DraughtsPiece(side: PlayerSide.white, type: PieceType.king);
+        return const DraughtsPiece(
+            side: PlayerSide.white, type: PieceType.king);
       case 'b':
         return const DraughtsPiece(side: PlayerSide.black, type: PieceType.man);
       case 'B':
-        return const DraughtsPiece(side: PlayerSide.black, type: PieceType.king);
+        return const DraughtsPiece(
+            side: PlayerSide.black, type: PieceType.king);
       default:
         return null;
     }

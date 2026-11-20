@@ -55,7 +55,8 @@ class MoveGenerator {
 
         if (captureMoves.isEmpty || !rules.mandatoryCapture) {
           if (piece.isKing) {
-            final targets = KingMovement.generateQuietTargets(board, from, rules);
+            final targets =
+                KingMovement.generateQuietTargets(board, from, rules);
             for (final to in targets) {
               quietMoves.add(
                 DraughtsMove(

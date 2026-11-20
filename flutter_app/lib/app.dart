@@ -197,9 +197,8 @@ class _DraftMasterAppState extends State<DraftMasterApp> {
                 ),
                 actions: [
                   IconButton(
-                    tooltip: _settings.musicEnabled
-                        ? 'Mute Music'
-                        : 'Enable Music',
+                    tooltip:
+                        _settings.musicEnabled ? 'Mute Music' : 'Enable Music',
                     icon: Icon(
                       _settings.musicEnabled
                           ? Icons.music_note_rounded
@@ -208,14 +207,13 @@ class _DraftMasterAppState extends State<DraftMasterApp> {
                     onPressed: () {
                       SoundHapticService.onButtonTap();
                       _updateSettings(
-                        _settings.copyWith(musicEnabled: !_settings.musicEnabled),
+                        _settings.copyWith(
+                            musicEnabled: !_settings.musicEnabled),
                       );
                     },
                   ),
                   IconButton(
-                    tooltip: _settings.soundEnabled
-                        ? 'Mute SFX'
-                        : 'Enable SFX',
+                    tooltip: _settings.soundEnabled ? 'Mute SFX' : 'Enable SFX',
                     icon: Icon(
                       _settings.soundEnabled
                           ? Icons.volume_up_rounded
@@ -223,7 +221,8 @@ class _DraftMasterAppState extends State<DraftMasterApp> {
                     ),
                     onPressed: () {
                       _updateSettings(
-                        _settings.copyWith(soundEnabled: !_settings.soundEnabled),
+                        _settings.copyWith(
+                            soundEnabled: !_settings.soundEnabled),
                       );
                     },
                   ),

@@ -37,7 +37,8 @@ class VideoExportService {
       return null;
     }
 
-    onProgress(const VideoExportProgress(stage: 'Preparing frames...', progress: 0.1));
+    onProgress(
+        const VideoExportProgress(stage: 'Preparing frames...', progress: 0.1));
 
     final dir = await getTemporaryDirectory();
     final outPath =
@@ -61,7 +62,8 @@ class VideoExportService {
       });
     }
 
-    onProgress(const VideoExportProgress(stage: 'Encoding MP4 video...', progress: 0.55));
+    onProgress(const VideoExportProgress(
+        stage: 'Encoding MP4 video...', progress: 0.55));
 
     final resultPath = await _channel.invokeMethod<String>('exportMatchVideo', {
       'outputPath': outPath,

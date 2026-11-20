@@ -38,7 +38,8 @@ class KingMovement {
         final nr = from.row + dir[0] * step;
         final nc = from.col + dir[1] * step;
         if (!board.inBounds(nr, nc)) break;
-        if (board.grid[nr][nc] != null) break; // Blocked by friendly or enemy piece
+        if (board.grid[nr][nc] != null)
+          break; // Blocked by friendly or enemy piece
         targets.add(BoardCoord(nr, nc));
       }
     }
@@ -72,7 +73,8 @@ class KingMovement {
           if (enemySquare == null) {
             if (occupant == null) continue;
             if (occupant.side == side) break; // Friendly piece blocks ray
-            if (alreadyCaptured.contains(key)) break; // Already jumped in this chain
+            if (alreadyCaptured.contains(key))
+              break; // Already jumped in this chain
             enemySquare = BoardCoord(nr, nc);
           } else {
             if (occupant != null) break; // Blocked beyond enemy piece
